@@ -1,0 +1,26 @@
+<%= form_tag url_for(:controller => "catalog", :action => "email_search"), :id => 'email_search_form', :class => "form-horizontal ajax_form", :method => :post do %>
+
+  <div class="modal-body">
+    <%= render :partial=>'/flash_msg' %>
+    <div class="control-group">
+      <label class="control-label" for="to">
+        <%= t('blacklight.email.form.send_to') %>
+      </label>
+      <div class="controls">
+
+        <%= text_field_tag :to, params[:to] %><br/>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="message">
+        <%= t('blacklight.email.form.message') %>
+      </label>
+      <div class="controls">
+      <%= text_area_tag :message, params[:message] %>
+       </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+  <button type="submit" class="btn btn-primary"> <%= t('blacklight.sms.form.submit') %></button>
+  </div>
+<% end %>
