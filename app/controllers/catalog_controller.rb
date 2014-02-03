@@ -197,6 +197,31 @@ class CatalogController < ApplicationController
       format.js { render :layout => false }
     end
   end    
+  
+  # Email Action (this will render the appropriate view on GET requests and process the form and send the email on POST requests)
+   def email_search_history
+
+     @searches = searches_from_history
+
+     if request.post? and validate_email_params
+       email = RecordMailer.email_search(@searches, {:to => params[:to], :message => params[:message]}, url_options)
+       email.deliver 
+
+       flash[:success] = I18n.t("blacklight.email.success")
+
+       respond_to do |format|
+         format.html { redirect_to catalog_path(params['id']) }
+         format.js { render 'email_sent' }
+       end and return
+     end
+
+     respond_to do |format|
+       format.html
+       format.js { render :layout => false }
+     end
+   end
+  
+  
 
 
 

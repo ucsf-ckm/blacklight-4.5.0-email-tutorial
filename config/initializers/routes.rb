@@ -12,6 +12,9 @@ module Blacklight
           get 'catalog/email_search', :as => "email_search"
           post 'catalog/email_search'
 
+          get 'catalog/email_search_history', :as => "email_search_history"
+          post 'catalog/email_search_history', :as => "email_search_history"
+
           post 'catalog/search'
           get 'catalog/sms', :as => "sms_catalog"
           get 'catalog/endnote', :as => "endnote_catalog"
